@@ -1,0 +1,19 @@
+{% from 'form_helper.html' import displayField %}
+{% extends 'prelogin-layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h1 class="form-h1">Login</h1>
+    <form class="form" action="{{url_for('login')}}" method="POST">
+        {{ displayField(form.username, "Username", autocomplete="off", autofocus=true) }}
+        {{ displayField(form.password, "Password", autocomplete="off", autofocus=true) }}
+        
+        <div class="form-item">
+            {{ form.submit_button }}
+        </div>
+        
+        {{ form.csrf_token }}
+    </form>
+    <p class="internal-link-p">Register <a href="{{ url_for('index') }}">here</a></p>
+{% endblock %}

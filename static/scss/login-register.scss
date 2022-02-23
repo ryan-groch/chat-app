@@ -1,0 +1,72 @@
+$btnHoverColor: #550055;
+
+:root {
+  --form-item-padding: 0.5em;
+}
+
+.form-h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.75rem;
+  padding: 0.25em 0;
+  text-align: center;
+}
+
+.form {
+  .form-item {
+    padding: calc(var(--form-item-padding)) 0;
+
+    .form-control {
+      border: none;
+      border-bottom: 1px solid black;
+      width: 100%;
+    }
+
+    #submit_button {
+      border: none;
+      background-color: black;
+      color: white;
+      font-weight: 600;
+      width: 100%;
+      padding: 0.5em 1em;
+      margin: 0.25em 0;
+
+      &:hover {
+        background-color: $btnHoverColor;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.messages {
+  padding-top: 0.5em;
+
+  .message {
+    list-style: none;
+    background-color: lightgray;
+    padding: 0.25em 0.5em;
+    margin: 0.2em 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75rem;
+    min-width: 100%;
+    overflow-wrap: break-word;
+    inline-size: calc(var(--inner-form-box-width));
+  }
+
+  .error {
+    border-left: 0.25em solid red;
+  }
+
+  .success {
+    border-left: 0.25em solid green;
+  }
+}
+
+@media (min-width: 40em) {
+  :root {
+    --form-item-padding: 0.75em;
+  }
+  .form-h1 {
+    font-size: 3rem;
+  }
+}

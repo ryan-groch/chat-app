@@ -1,0 +1,53 @@
+:root {
+  --bubble-width: 100vw;
+  --bubble-height: 40em;
+
+  --bottom-form-padding: 8em;
+
+  --inner-form-box-width: 12em;
+}
+
+.backdrop {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(../images/endless-constellation.svg);
+  background-size: contain;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  .form-box {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(var(--bubble-height));
+
+    .speech-bubble {
+      width: calc(var(--bubble-width));
+      min-height: calc(var(--bubble-height));
+      position: absolute;
+    }
+
+    .form-box-inner {
+      position: relative;
+      z-index: 10000;
+      padding-bottom: calc(var(--bottom-form-padding));
+      min-width: calc(var(--inner-form-box-width));
+
+      .internal-link-p {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media (min-width: 40em) {
+  :root {
+    --bubble-width: 40em;
+
+    --bottom-form-padding: 7em;
+  }
+}

@@ -1,0 +1,19 @@
+.wrapper-grid {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  grid-template-rows: auto 1fr;
+
+  .main-section {
+    height: 100%;
+    display: grid;
+  }
+}
+
+@media (min-width: 40em) {
+  .wrapper-grid {
+    .main-section {
+      grid-template-columns: auto 1fr;
+    }
+  }
+}

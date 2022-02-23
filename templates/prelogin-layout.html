@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% assets "css_main" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}"></link>
+    {% endassets %}
+    
+</head>
+<body>
+    <div class="backdrop">
+        <div class="form-box">
+            <img class="speech-bubble" src="{{ url_for('static', filename='images/speech-bubble-148487.png') }}" alt="">
+            <div class="form-box-inner">
+                {% block content %}
+
+                {% endblock %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <ul class="messages">
+                        {% for message in messages %}
+                            <li class="message {{ message[0] }}">{{ message[1] }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
