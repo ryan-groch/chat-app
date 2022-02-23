@@ -27,7 +27,7 @@ css = Bundle('scss/resets.scss', 'scss/login-backdrop.scss',
 assets.register('css_main', css)
 
 # Configure database
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL").replace("postgres://", "postgresql://", 1)
 db = SQLAlchemy(app)
 
 
