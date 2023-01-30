@@ -30,7 +30,7 @@ assets.register('css_main', css)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL").replace("postgres://", "postgresql://", 1)
 db = SQLAlchemy(app)
 
-engine = SQLAlchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+engine = SQLAlchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'], {})
 inspector = SQLAlchemy.inspect(engine)
 
 if not inspector.has_table("users"):
