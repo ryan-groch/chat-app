@@ -30,6 +30,16 @@ assets.register('css_main', css)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL").replace("postgres://", "postgresql://", 1)
 db = SQLAlchemy(app)
 
+engine = SQLAlchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+inspector = SQLAlchemy.inspect(engine)
+
+if not inspector.has_table("users"):
+    with app.app_context():
+        db.drop_all()
+        db.create_all()
+        app.logger.info('Initialized the database!')
+else:
+    app.logger.info('Database already contains the users table.')
 
 # Initialize flask-socketio
 socketio = SocketIO(app)
