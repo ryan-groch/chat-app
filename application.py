@@ -4,6 +4,7 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_socketio import SocketIO, send, join_room, leave_room
 from flask_assets import Environment, Bundle
 from time import localtime, strftime
+from sqlalchemy.inspection import inspect
 
 from wtform_fields import *
 from models import *
@@ -30,8 +31,8 @@ assets.register('css_main', css)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL").replace("postgres://", "postgresql://", 1)
 db = SQLAlchemy(app)
 
-engine = SQLAlchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'], {})
-inspector = SQLAlchemy.inspect(engine)
+engine = db.create_engine(app.config['SQLALCHEMY_DATABASE_URI'], {})
+inspector =  inspect(engine)
 
 if not inspector.has_table("users"):
     with app.app_context():
