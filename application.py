@@ -38,11 +38,13 @@ inspector =  sa.inspect(engine)
 
 if not inspector.has_table("users"):
     with app.app_context():
-        db.drop_all()
+        # db.drop_all()
         db.create_all()
+        print('Initialized the database!')
         app.logger.info('Initialized the database!')
 else:
     app.logger.info('Database already contains the users table.')
+    print('Database already contains the users table.')
 
 # Initialize flask-socketio
 socketio = SocketIO(app)
