@@ -1,13 +1,15 @@
 import os
+import sqlalchemy as sa
 from flask import Flask, redirect, render_template, url_for, flash
 from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_socketio import SocketIO, send, join_room, leave_room
 from flask_assets import Environment, Bundle
 from time import localtime, strftime
-from sqlalchemy.inspection import inspect
+from passlib.hash import pbkdf2_sha256
+from flask_sqlalchemy import SQLAlchemy
 
-from wtform_fields import *
-from models import *
+from wtform_fields import RegistrationForm, LoginForm
+from models import User
 
 
 # Configure app
@@ -31,8 +33,8 @@ assets.register('css_main', css)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL").replace("postgres://", "postgresql://", 1)
 db = SQLAlchemy(app)
 
-engine = db.create_engine(app.config['SQLALCHEMY_DATABASE_URI'], {})
-inspector =  inspect(engine)
+engine = sa.create_engine(app.config['SQLALCHEMY_DATABASE_URI'], {})
+inspector =  sa.inspect(engine)
 
 if not inspector.has_table("users"):
     with app.app_context():
